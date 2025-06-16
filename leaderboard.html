@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liderlik Tablosu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Özel liderlik sayfası stilleri */
+    .leaderboard-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+    }
+    
+    .leaderboard-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .leaderboard-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      align-items: center;
+    }
+    
+    .top-3 {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 255, 255, 0.15));
+      border-left: 4px solid #FFD700;
+    }
+    
+    .top-3 .rank {
+      font-weight: bold;
+      color: #FFD700;
+    }
+    
+    .rank {
+      width: 30px;
+      font-weight: bold;
+    }
+    
+    .user-info {
+      flex: 1;
+      margin-left: 15px;
+    }
+    
+    .username {
+      font-weight: bold;
+    }
+    
+    .user-score {
+      color: #4cc9f0;
+      font-weight: bold;
+    }
+    
+    .current-user {
+      background: rgba(76, 201, 240, 0.2);
+      border: 1px solid #4cc9f0;
+    }
+    
+    .search-box {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button onclick="window.location.href='index.html'">← Geri</button>
+    <h1>Liderlik Tablosu</h1>
+    <div style="width: 48px;"></div> <!-- Boş div for alignment -->
+  </div>
+
+  <div class="leaderboard-container">
+    <div class="leaderboard-header">
+      <h2>TOP 100 Madenci</h2>
+      <input type="text" class="search-box" placeholder="Kullanıcı ara...">
+    </div>
+    
+    <ul class="leaderboard-list" id="leaderboardList">
+      <!-- JavaScript ile dolacak -->
+    </ul>
+    
+    <div class="user-position">
+      <h3>Sizin Pozisyonunuz</h3>
+      <div class="leaderboard-item current-user" id="currentUser">
+        <!-- JavaScript ile dolacak -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Liderlik verileri (gerçek uygulamada sunucudan çekilecek)
+    const leaderboardData = [
+      { id: 1, username: "MadenciPro", score: 2450, isCurrentUser: false },
+      { id: 2, username: "CBSever", score: 1980, isCurrentUser: false },
+      { id: 3, username: "TonAvcısı", score: 1750, isCurrentUser: false },
+      { id: 4, username: "AltınKazma", score: 1620, isCurrentUser: false },
+      { id: 5, username: "KriptoKral", score: 1580, isCurrentUser: false },
+      { id: 6, username: "Blockchainci", score: 1420, isCurrentUser: false },
+      { id: 7, username: "Cankaya", score: 1350, isCurrentUser: false },
+      { id: 8, username: "TokenPazarlamacı", score: 1280, isCurrentUser: false },
+      { id: 9, username: "YıldızMadenci", score: 1150, isCurrentUser: false },
+      { id: 10, username: "GeceKazıcısı", score: 980, isCurrentUser: false },
+      // ... diğer kullanıcılar
+      { id: 125, username: "Siz", score: 320, isCurrentUser: true }
+    ];
+
+    // Liderlik tablosunu oluştur
+    function renderLeaderboard() {
+      const leaderboardList = document.getElementById('leaderboardList');
+      const currentUserElement = document.getElementById('currentUser');
+      
+      // İlk 100 kullanıcıyı göster
+      const top100 = leaderboardData.slice(0, 100);
+      
+      top100.forEach((user, index) => {
+        const li = document.createElement('li');
+        li.className = `leaderboard-item ${index < 3 ? 'top-3' : ''}`;
+        
+        li.innerHTML = `
+          <div class="rank">${index + 1}</div>
+          <div class="user-info">
+            <span class="username">${user.username}</span>
+          </div>
+          <div class="user-score">${user.score} CB</div>
+        `;
+        
+        leaderboardList.appendChild(li);
+      });
+      
+      // Mevcut kullanıcıyı göster
+      const currentUser = leaderboardData.find(user => user.isCurrentUser);
+      if(currentUser) {
+        const position = leaderboardData.indexOf(currentUser) + 1;
+        currentUserElement.innerHTML = `
+          <div class="rank">${position > 100 ? '100+' : position}</div>
+          <div class="user-info">
+            <span class="username">${currentUser.username}</span>
+          </div>
+          <div class="user-score">${currentUser.score} CB</div>
+        `;
+      }
+      
+      // Arama fonksiyonu
+      document.querySelector('.search-box').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('.leaderboard-item');
+        
+        items.forEach(item => {
+          const username = item.querySelector('.username').textContent.toLowerCase();
+          if(username.includes(searchTerm)) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+    
+    // Sayfa yüklendiğinde çalıştır
+    document.addEventListener('DOMContentLoaded', renderLeaderboard);
+  </script>
+</body>
+</html>
