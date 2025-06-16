@@ -1,11 +1,11 @@
 /* Temel Ayarlar */
 body {
-  font-family: Arial, sans-serif;
-  background: #1a1a2e;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f0f23;
   color: white;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -16,59 +16,80 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background: #16213e;
+  background: #1a1a2e;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  color: #4cc9f0;
 }
 
 /* Ana İçerik */
-.mining-container {
+.main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 20px;
+}
+
+.mining-container {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .balance-display {
   font-size: 1.2rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #4cc9f0;
+  font-weight: bold;
 }
 
 .mining-btn {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  background: linear-gradient(145deg, #4361ee, #3a0ca3);
   border: none;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   cursor: pointer;
+  box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+  transition: transform 0.3s;
+}
+
+.mining-btn:active {
+  transform: scale(0.95);
 }
 
 .mining-btn img {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin-bottom: 10px;
 }
 
+.mining-btn.active {
+  background: linear-gradient(145deg, #3a0ca3, #4361ee);
+}
+
 .premium-btn {
-  background: linear-gradient(135deg, #f72585, #b5179e);
+  background: linear-gradient(145deg, #f72585, #b5179e);
   color: white;
   border: none;
   padding: 12px 25px;
   border-radius: 25px;
   cursor: pointer;
   font-weight: bold;
+  margin-top: 10px;
+  box-shadow: 0 4px 10px rgba(247, 37, 133, 0.3);
 }
 
 .shop-btn-container {
@@ -76,30 +97,43 @@ body {
 }
 
 .shop-btn {
-  background: linear-gradient(135deg, #4cc9f0, #4895ef);
+  background: linear-gradient(145deg, #4cc9f0, #4895ef);
   color: white;
   border: none;
   padding: 12px 30px;
   border-radius: 25px;
   cursor: pointer;
   font-weight: bold;
+  box-shadow: 0 4px 10px rgba(76, 201, 240, 0.3);
 }
 
 /* Alt Menü */
 .bottom-menu {
   display: flex;
   justify-content: space-around;
-  padding: 15px 0;
-  background: #16213e;
+  padding: 12px 0;
+  background: #1a1a2e;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
 }
 
 .bottom-menu button {
   background: none;
   border: none;
   cursor: pointer;
+  padding: 8px;
 }
 
 .bottom-menu img {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.bottom-menu button.active img {
+  opacity: 1;
+  filter: brightness(0) invert(0.8) sepia(1) hue-rotate(180deg) saturate(5);
 }
