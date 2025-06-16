@@ -12,19 +12,31 @@
     <div style="width: 48px;"></div>
   </div>
 
-  <div class="spin-container">
-    <div class="spin-wheel">
-      <!-- Spin çarkı burada olacak -->
+  <div class="main-content">
+    <div class="wheel-container">
+      <div class="wheel">
+        <div class="wheel-section" style="background-color: #FF6384; transform: rotate(0deg);">5 CB</div>
+        <div class="wheel-section" style="background-color: #36A2EB; transform: rotate(60deg);">10 CB</div>
+        <div class="wheel-section" style="background-color: #FFCE56; transform: rotate(120deg);">20 CB</div>
+        <div class="wheel-section" style="background-color: #4BC0C0; transform: rotate(180deg);">0 CB</div>
+        <div class="wheel-section" style="background-color: #9966FF; transform: rotate(240deg);">3 Spin</div>
+        <div class="wheel-section" style="background-color: #FF9F40; transform: rotate(300deg);">Premium</div>
+      </div>
+      <button id="spinBtn" class="spin-btn">ÇEVİR</button>
     </div>
-    <button class="spin-btn">SPİN ÇEVİR</button>
+    
+    <div class="spin-info">
+      <p>Günlük 1 ücretsiz spin hakkınız var</p>
+      <p>Ek spin başına: 0.25 TON</p>
+    </div>
   </div>
 
   <div class="bottom-menu">
-    <button onclick="window.location.href='index.html'"><img src="assets/home-icon.png"></button>
-    <button onclick="window.location.href='spin.html'"><img src="assets/spin-icon.png"></button>
-    <button onclick="window.location.href='tasks.html'"><img src="assets/earn-icon.png"></button>
-    <button onclick="window.location.href='wallet.html'"><img src="assets/wallet-icon.png"></button>
-    <button onclick="window.location.href='referral.html'"><img src="assets/referral-icon.png"></button>
+    <button onclick="window.location.href='index.html'"><img src="assets/home-icon.png" alt="Ana Sayfa"></button>
+    <button onclick="window.location.href='spin.html'"><img src="assets/spin-icon.png" alt="Spin"></button>
+    <button onclick="window.location.href='tasks.html'"><img src="assets/earn-icon.png" alt="Görevler"></button>
+    <button onclick="window.location.href='wallet.html'"><img src="assets/wallet-icon.png" alt="Cüzdan"></button>
+    <button onclick="window.location.href='referral.html'"><img src="assets/referral-icon.png" alt="Referans"></button>
   </div>
 
   <script src="script.js"></script>
