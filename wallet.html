@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cüzdan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Cüzdanım</h1>
+    <button onclick="window.location.href='index.html'">← Geri</button>
+  </div>
+
+  <div class="wallet-container">
+    <div class="balance-card">
+      <img src="assets/ton-icon.png" alt="TON">
+      <h3>TON Bakiyesi</h3>
+      <p id="tonBalance">0</p>
+      <button onclick="buyTON()">TON Satın Al</button>
+    </div>
+    
+    <div class="balance-card">
+      <img src="assets/cb-logo.png" alt="CB">
+      <h3>CB Bakiyesi</h3>
+      <p id="cbBalance">0</p>
+      <button onclick="window.location.href='shop.html'">CB Artış Al</button>
+    </div>
+  </div>
+
+  <div class="admin-wallet">
+    <h3>Admin Cüzdan Adresi:</h3>
+    <p class="wallet-address">UQB7Qq8821NNJJ5JGp4GbnV66sLWxEDFCtpUUYOaBbW2RpIL</p>
+    <p>Ödemeler bu adrese yapılacaktır</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
