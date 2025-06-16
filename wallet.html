@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cüzdan | CB Mining</title>
+  <title>CB Cüzdan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Cüzdan Yönetimi</h1>
-    
+  <div class="header">
+    <button onclick="window.location.href='index.html'">← Geri</button>
+    <h1>Cüzdanım</h1>
+    <div style="width: 48px;"></div>
+  </div>
+
+  <div class="wallet-container">
     <div class="wallet-card">
       <img src="assets/ton-icon.png" alt="TON">
       <h3>TON Bakiyesi</h3>
       <p id="tonBalance">0</p>
-      <button class="btn" onclick="connectWallet()">TON Cüzdan Bağla</button>
-      <button class="btn" onclick="buyTON()">TON Satın Al</button>
+      <button onclick="connectWallet()">Cüzdan Bağla</button>
+      <button onclick="buyTON()">TON Al</button>
     </div>
     
     <div class="wallet-card">
       <img src="assets/cb-logo.png" alt="CB">
       <h3>CB Bakiyesi</h3>
       <p id="cbBalance">0</p>
-      <button class="btn" onclick="buyCBANK()">CBANK Al</button>
+      <button onclick="buyCBANK()">CBANK Al</button>
     </div>
+  </div>
+
+  <div class="admin-wallet">
+    <h3>Admin Cüzdanı:</h3>
+    <p>UQB7Qq8821NNJJ5JGp4GbnV66sLWxEDFCtpUUYOaBbW2RpIL</p>
+  </div>
+
+  <div class="bottom-menu">
+    <button onclick="window.location.href='index.html'"><img src="assets/home-icon.png"></button>
+    <button onclick="window.location.href='spin.html'"><img src="assets/spin-icon.png"></button>
+    <button onclick="window.location.href='tasks.html'"><img src="assets/earn-icon.png"></button>
+    <button onclick="window.location.href='wallet.html'"><img src="assets/wallet-icon.png"></button>
+    <button onclick="window.location.href='referral.html'"><img src="assets/referral-icon.png"></button>
   </div>
 
   <script src="script.js"></script>
