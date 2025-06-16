@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CB Mining Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <button class="leaderboard-btn" onclick="openLeaderboard()">🏆 TOP 100</button>
+    <h1>CB Madencilik</h1>
+    <button class="clan-btn" onclick="openClan()">
+      <img src="assets/clan-icon.png" alt="Klan">
+    </button>
+  </div>
+
+  <div class="mining-container">
+    <div class="balance-display">Bakiye: <span id="balance">0</span> CB</div>
+    
+    <button class="mining-btn" id="miningBtn">
+      <img src="assets/cb-logo.png" alt="CB Logo">
+      <div id="timer">Madenciliği Başlat</div>
+    </button>
+    
+    <button class="premium-btn" id="premiumBtn">PREMIUM (1.5 TON)</button>
+  </div>
+
+  <div class="shop-btn-container">
+    <button class="shop-btn" onclick="window.location.href='shop.html'">🛍️ Mağaza</button>
+  </div>
+
+  <div class="bottom-menu">
+    <button onclick="window.location.href='index.html'">🏠</button>
+    <button onclick="openSpin()">🎰</button>
+    <button onclick="openTasks()">🔗</button>
+    <button onclick="window.location.href='wallet.html'">💰</button>
+    <button onclick="openRef()">🎯</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
