@@ -7,8 +7,9 @@
 </head>
 <body>
   <div class="header">
-    <h1>CB Artış Mağazası</h1>
     <button onclick="window.location.href='index.html'">← Geri</button>
+    <h1>CB Mağaza</h1>
+    <div style="width: 48px;"></div>
   </div>
 
   <div class="shop-container">
@@ -16,50 +17,30 @@
       <div class="boost-icon">⚡</div>
       <h3>%0.5 Kazanç</h3>
       <p>0.1 TON</p>
-      <button onclick="buyBoost(0.5, 0.1)">Satın Al</button>
+      <button>Satın Al</button>
     </div>
     
     <div class="boost-card">
       <div class="boost-icon">🚀</div>
       <h3>%1 Kazanç</h3>
       <p>1.5 TON</p>
-      <button onclick="buyBoost(1, 1.5)">Satın Al</button>
-    </div>
-    
-    <div class="boost-card">
-      <div class="boost-icon">🔥</div>
-      <h3>%5 Kazanç</h3>
-      <p>2.0 TON</p>
-      <button onclick="buyBoost(5, 2.0)">Satın Al</button>
+      <button>Satın Al</button>
     </div>
     
     <div class="boost-card">
       <div class="boost-icon">💎</div>
-      <h3>%10 Kazanç</h3>
-      <p>3.0 TON</p>
-      <button onclick="buyBoost(10, 3.0)">Satın Al</button>
-    </div>
-    
-    <div class="boost-card">
-      <div class="boost-icon">🌟</div>
-      <h3>%20 Kazanç</h3>
-      <p>4.0 TON</p>
-      <button onclick="buyBoost(20, 4.0)">Satın Al</button>
-    </div>
-    
-    <div class="boost-card">
-      <div class="boost-icon">👑</div>
       <h3>%35 Kazanç</h3>
       <p>5.0 TON</p>
-      <button onclick="buyBoost(35, 5.0)">Satın Al</button>
+      <button>Satın Al</button>
     </div>
   </div>
 
-  <div class="cbank-promo">
-    <h3>CBANK Token Alın!</h3>
-    <p>Blum Memepad'den CBANK alarak kazancınızı artırın:</p>
-    <button onclick="buyCBANK()">CBANK Satın Al</button>
-    <p class="token-info">Token Adresi: EQARYZBkWrdBMLFROALHaUHVm1ng7CnY2DH-9YirsL-nIzu2</p>
+  <div class="bottom-menu">
+    <button onclick="window.location.href='index.html'"><img src="assets/home-icon.png"></button>
+    <button onclick="window.location.href='spin.html'"><img src="assets/spin-icon.png"></button>
+    <button onclick="window.location.href='tasks.html'"><img src="assets/earn-icon.png"></button>
+    <button onclick="window.location.href='wallet.html'"><img src="assets/wallet-icon.png"></button>
+    <button onclick="window.location.href='referral.html'"><img src="assets/referral-icon.png"></button>
   </div>
 
   <script src="script.js"></script>
