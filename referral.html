@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CB Referans</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <button onclick="window.location.href='index.html'">← Geri</button>
+    <h1>Referans Programı</h1>
+    <div style="width: 48px;"></div>
+  </div>
+
+  <div class="main-content">
+    <p>Davet başına 10 CB kazanın!</p>
+    
+    <div class="referral-link">
+      <input type="text" id="refLink" value="Yükleniyor..." readonly>
+      <button onclick="copyRefLink()">Kopyala</button>
+    </div>
+    
+    <p>Toplam davet: <span id="refCount">0</span></p>
+    
+    <div class="referral-info">
+      <p>Davet ettiğiniz her kullanıcı madenciliğe başladığında, siz 10 CB kazanırsınız</p>
+    </div>
+  </div>
+
+  <div class="bottom-menu">
+    <button onclick="window.location.href='index.html'"><img src="assets/home-icon.png" alt="Ana Sayfa"></button>
+    <button onclick="window.location.href='spin.html'"><img src="assets/spin-icon.png" alt="Spin"></button>
+    <button onclick="window.location.href='tasks.html'"><img src="assets/earn-icon.png" alt="Görevler"></button>
+    <button onclick="window.location.href='wallet.html'"><img src="assets/wallet-icon.png" alt="Cüzdan"></button>
+    <button onclick="window.location.href='referral.html'"><img src="assets/referral-icon.png" alt="Referans"></button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Referans linkini güncelle
+    document.addEventListener('DOMContentLoaded', function() {
+      const refLink = `https://t.me/cbmining_bot?start=ref_${user.id}`;
+      document.getElementById('refLink').value = refLink;
+    });
+  </script>
+</body>
+                            </html>
