@@ -1,11 +1,13 @@
-// Kullanıcı verileri
-let user = {
+// Kullanıcı verileri (localStorage ile kalıcı)
+let user = JSON.parse(localStorage.getItem('cbmining_user')) || {
+  id: Date.now().toString(),
   balance: 0,
   mining: false,
   miningEnd: null,
-  tonBalance: 2.0,
+  tonBalance: 0,
   clickedRefs: [],
-  lastSpin: null
+  lastSpin: null,
+  referrals: []
 };
 
 // DOM Elementleri
@@ -14,19 +16,29 @@ const miningBtn = document.getElementById('miningBtn');
 const timerEl = document.getElementById('timer');
 const premiumBtn = document.getElementById('premiumBtn');
 
+// Sayfa yüklendiğinde
+document.addEventListener('DOMContentLoaded', () => {
+  updateUI();
+  if(user.mining && user.miningEnd > Date.now()) {
+    startTimerVisual();
+  }
+});
+
 // Madencilik başlat
 function startMining() {
   if(user.mining) return;
   
   user.mining = true;
   user.miningEnd = Date.now() + 8 * 60 * 60 * 1000; // 8 saat
+  saveUserData();
   
   miningBtn.classList.add('active');
-  updateTimer();
+  startTimerVisual();
   
   setTimeout(() => {
     user.balance += 90;
     user.mining = false;
+    saveUserData();
     updateUI();
     showNotification("Madencilik tamamlandı! +90 CB kazandınız.");
   }, 8 * 60 * 60 * 1000);
@@ -44,114 +56,114 @@ function startPremiumMining() {
   startMining();
 }
 
-// Ödemeyi admin cüzdanına gönder
-function sendPaymentToAdmin(amount) {
-  // Burada TON blockchain işlemi yapılacak
-  console.log(`${amount} TON admin cüzdanına gönderildi: UQB7Qq8821NNJJ5JGp4GbnV66sLWxEDFCtpUUYOaBbW2RpIL`);
-}
-
-// Geri sayım
-function updateTimer() {
-  const now = Date.now();
-  const distance = user.miningEnd - now;
-  
-  if(distance <= 0) {
-    timerEl.textContent = "Madenciliği Başlat";
-    miningBtn.classList.remove('active');
-    return;
-  }
-  
-  const hours = Math.floor(distance / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  timerEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  
-  if(distance > 0) {
-    setTimeout(updateTimer, 1000);
-  }
-}
-
-// Spin fonksiyonu
-function openSpin() {
-  const today = new Date().toDateString();
-  
-  if(user.lastSpin === today) {
-    showNotification("Günlük ücretsiz spininizi zaten kullandınız!\nEk spinler için TON veya CBANK yatırın.");
-    return;
-  }
-  
-  user.lastSpin = today;
-  const prize = Math.floor(Math.random() * 10) + 1; // 1-10 CB arası
-  user.balance += prize;
-  updateUI();
-  showNotification(`Tebrikler! Spin çarkından ${prize} CB kazandınız!`);
+// Geri sayım görseli
+function startTimerVisual() {
+  const timerInterval = setInterval(() => {
+    const now = Date.now();
+    const distance = user.miningEnd - now;
+    
+    if(distance <= 0) {
+      clearInterval(timerInterval);
+      timerEl.textContent = "Madenciliği Başlat";
+      miningBtn.classList.remove('active');
+      return;
+    }
+    
+    const hours = Math.floor(distance / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    timerEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }, 1000);
 }
 
 // Görevler
 function openTasks() {
-  const refLinks = [
-    { url: "https://t.me/blum/app?startapp=ref_M96qo1sLIr", clicked: false },
-    { url: "https://t.me/boinker_bot/boinkapp?startapp=boink1463264622", clicked: false },
-    { url: "https://t.me/cbankmining", clicked: false },
-    { url: "https://t.me/blumcrypto_memepad", clicked: false },
-    { url: "https://t.me/theYescoin_bot/Yescoin?startapp=GtNgBb", clicked: false }
+  const tasks = [
+    { name: "blum", url: "https://t.me/blum/app?startapp=ref_M96qo1sLIr" },
+    { name: "boinker", url: "https://t.me/boinker_bot/boinkapp?startapp=boink1463264622" },
+    { name: "cbank", url: "https://t.me/cbankmining" },
+    { name: "blumcrypto", url: "https://t.me/blumcrypto_memepad" },
+    { name: "yescoin", url: "https://t.me/theYescoin_bot/Yescoin?startapp=GtNgBb" }
   ];
-  
+
   let message = "Görevler (Her biri 10 CB kazandırır):\n\n";
-  refLinks.forEach((link, index) => {
-    const isClicked = user.clickedRefs.includes(link.url);
-    message += `${index+1}. ${isClicked ? '✅ ' : '🔗 '}${link.url}\n`;
+  tasks.forEach((task, index) => {
+    const isCompleted = user.clickedRefs.includes(task.url);
+    message += `${index+1}. ${isCompleted ? '✅ ' : '🔴 '}${task.name}\n`;
   });
-  
-  const choice = prompt(message + "\nTamamladığınız görevin numarasını girin:");
-  if(choice && refLinks[choice-1] && !user.clickedRefs.includes(refLinks[choice-1].url)) {
-    user.clickedRefs.push(refLinks[choice-1].url);
-    user.balance += 10;
-    updateUI();
-    showNotification("10 CB kazandınız! Görev tamamlandı.");
+
+  const taskName = prompt(message + "\nTamamlamak istediğiniz görevin adını yazın (ör: blum):");
+  if(taskName) {
+    const selectedTask = tasks.find(t => t.name.toLowerCase() === taskName.toLowerCase());
+    if(selectedTask && !user.clickedRefs.includes(selectedTask.url)) {
+      user.clickedRefs.push(selectedTask.url);
+      user.balance += 10;
+      saveUserData();
+      updateUI();
+      window.open(selectedTask.url, '_blank');
+      showNotification("10 CB kazandınız! Görev tamamlandı.");
+    }
   }
 }
 
-// Klan fonksiyonları
-function openClan() {
-  const action = prompt("Klan işlemleri:\n1. Klan oluştur\n2. Klana katıl\n3. Klanımı yönet\n\nSeçiminiz (1-3):");
-  
-  if(action === "1") {
-    showNotification("Klan oluşturmak için 5 TON gereklidir.");
-  } else if(action === "2") {
-    const clanId = prompt("Katılmak istediğiniz klan ID'sini girin:");
-    showNotification(`${clanId} klanına katılma isteği gönderildi.`);
+// Cüzdan bağlantısı
+function connectWallet() {
+  if(window.ton) {
+    window.ton.request({ method: "ton_requestAccounts" })
+      .then(accounts => {
+        user.walletAddress = accounts[0];
+        saveUserData();
+        showNotification("TON Cüzdan bağlantısı başarılı!");
+      });
+  } else {
+    showNotification("TON Wallet uygulaması yüklü değil");
   }
 }
 
-// Liderlik tablosu
-function openLeaderboard() {
-  showNotification("Liderlik tablosu yükleniyor...\n\n1. Kullanıcı1 - 1500 CB\n2. Kullanıcı2 - 1200 CB\n...\n100. Kullanıcı100 - 300 CB\n\nSizin sıralamanız: 100+");
+// Referans sistemi
+function openRef() {
+  const refLink = `https://t.me/cbmining_bot?start=${user.id}`;
+  const message = `Referans linkiniz:\n${refLink}\n\nHer davet için 10 CB kazanın!\n\nDavet edilen kişi madenciliğe başladığında otomatik ödül alacaksınız.`;
+  showNotification(message);
 }
 
-// Bildirim göster
-function showNotification(message) {
-  alert(message);
+// TON Satın Alma
+function buyTON() {
+  const paymentLink = `ton://transfer/${user.walletAddress || 'ADMIN_WALLET'}?amount=1500000000&text=CB_Mining`;
+  window.open(paymentLink, '_blank');
 }
 
-// Arayüzü güncelle
+// CBANK Satın Alma
+function buyCBANK() {
+  window.open("https://t.me/blumcrypto_memepad", '_blank');
+}
+
+// Yardımcı fonksiyonlar
+function saveUserData() {
+  localStorage.setItem('cbmining_user', JSON.stringify(user));
+}
+
 function updateUI() {
   balanceEl.textContent = user.balance;
+  if(document.getElementById('tonBalance')) {
+    document.getElementById('tonBalance').textContent = user.tonBalance;
+  }
 }
 
-// Event listeners
-miningBtn.addEventListener('click', startMining);
-premiumBtn.addEventListener('click', startPremiumMining);
+function showNotification(msg) {
+  alert(msg);
+}
 
 // Telegram WebApp entegrasyonu
 if(window.Telegram && Telegram.WebApp) {
   Telegram.WebApp.expand();
-  
-  // Kullanıcı verilerini Telegram'dan al
-  const tgUser = Telegram.WebApp.initDataUnsafe.user;
-  if(tgUser) {
-    user.id = tgUser.id;
-    user.username = tgUser.username;
-  }
+  if(Telegram.WebApp.initDataUnsafe.start_param) {
+    const referrerId = Telegram.WebApp.initDataUnsafe.start_param.replace('ref_', '');
+    if(referrerId && referrerId !== user.id) {
+      user.referrals.push(referrerId);
+      user.balance += 10;
+      saveUserData();
     }
+  }
+}
