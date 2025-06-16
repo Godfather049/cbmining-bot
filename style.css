@@ -1,95 +1,95 @@
+:root {
+  --primary: #4361ee;
+  --secondary: #3f37c9;
+  --accent: #4895ef;
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+}
+
+/* Temel stil */
 body {
-  font-family: 'Arial', sans-serif;
-  background: #1a1a2e;
+  font-family: 'Inter', sans-serif;
+  background: var(--dark);
   color: white;
   margin: 0;
-  padding: 0;
-  overflow-x: hidden;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background: #16213e;
-}
-
-.mining-container {
-  text-align: center;
-  margin: 30px auto;
-  padding: 20px;
-}
-
-.balance-display {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  color: #4cc9f0;
-}
-
-.mining-btn {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #4361ee, #3a0ca3);
-  border: none;
+/* Butonlar */
+.btn {
+  background: var(--primary);
   color: white;
-  font-size: 1rem;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+}
+
+/* Madencilik butonu */
+.mining-btn {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+  justify-content: center;
+  margin: 20px auto;
+  box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
 }
 
-.mining-btn img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
-}
-
-.premium-btn {
-  background: linear-gradient(135deg, #f72585, #b5179e);
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(247, 37, 133, 0.3);
-}
-
-.shop-btn-container {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.shop-btn {
-  background: linear-gradient(135deg, #4cc9f0, #4895ef);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.bottom-menu {
+/* Alt menü */
+.bottom-nav {
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
   background: #16213e;
-  padding: 15px 0;
+  padding: 12px 0;
 }
 
-.bottom-menu button {
+.nav-btn {
   background: none;
   border: none;
   color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #16213e;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
 }
