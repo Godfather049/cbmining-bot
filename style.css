@@ -1,0 +1,95 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: #1a1a2e;
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #16213e;
+}
+
+.mining-container {
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.balance-display {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #4cc9f0;
+}
+
+.mining-btn {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+}
+
+.mining-btn img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.premium-btn {
+  background: linear-gradient(135deg, #f72585, #b5179e);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(247, 37, 133, 0.3);
+}
+
+.shop-btn-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.shop-btn {
+  background: linear-gradient(135deg, #4cc9f0, #4895ef);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: #16213e;
+  padding: 15px 0;
+}
+
+.bottom-menu button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
