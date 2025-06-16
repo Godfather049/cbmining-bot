@@ -35,6 +35,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .mining-container {
@@ -136,4 +137,70 @@ body {
 .bottom-menu button.active img {
   opacity: 1;
   filter: brightness(0) invert(0.8) sepia(1) hue-rotate(180deg) saturate(5);
+}
+
+/* Spin Wheel */
+.wheel-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 8px solid #333;
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.wheel-section {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  transform-origin: bottom right;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.spin-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* Task Buttons */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.task-btn {
+  background: linear-gradient(145deg, #3a0ca3, #4361ee);
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
