@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CB Görevler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <button onclick="window.location.href='index.html'">← Geri</button>
+    <h1>Kazanç Görevleri</h1>
+    <div style="width: 48px;"></div>
+  </div>
+
+  <div class="main-content">
+    <p>Her görev tamamlandığında 10 CB kazanırsınız:</p>
+    
+    <div class="task-grid">
+      <button class="task-btn" onclick="completeTask('blum')">
+        <img src="assets/blum-icon.png" width="40">
+        <span>Blum</span>
+      </button>
+      
+      <button class="task-btn" onclick="completeTask('boinker')">
+        <img src="assets/boinker-icon.png" width="40">
+        <span>Boinker</span>
+      </button>
+      
+      <button class="task-btn" onclick="completeTask('cbank')">
+        <img src="assets/cbank-icon.png" width="40">
+        <span>CBank</span>
+      </button>
+      
+      <button class="task-btn" onclick="completeTask('yescoin')">
+        <img src="assets/yescoin-icon.png" width="40">
+        <span>Yescoin</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="bottom-menu">
+    <button onclick="window.location.href='index.html'"><img src="assets/home-icon.png" alt="Ana Sayfa"></button>
+    <button onclick="window.location.href='spin.html'"><img src="assets/spin-icon.png" alt="Spin"></button>
+    <button onclick="window.location.href='tasks.html'"><img src="assets/earn-icon.png" alt="Görevler"></button>
+    <button onclick="window.location.href='wallet.html'"><img src="assets/wallet-icon.png" alt="Cüzdan"></button>
+    <button onclick="window.location.href='referral.html'"><img src="assets/referral-icon.png" alt="Referans"></button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
